@@ -47,6 +47,7 @@ class ViewController: UIViewController {
         displayView.clickLinkWithBlock { (displayView, linkData) in
             print("click link \(linkData.url)");
         };
+        
 
     }
 

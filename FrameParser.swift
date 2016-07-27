@@ -68,7 +68,7 @@ public class FrameParser: NSObject {
     
     
     // MARK: --- Inner Method
-    class func attriubtedsWithConfig(config: FrameParserConfig) -> Dictionary<String, AnyObject> {
+    private class func attriubtedsWithConfig(config: FrameParserConfig) -> Dictionary<String, AnyObject> {
         let fontSize = config.fontSize;
         let fontRef = CTFontCreateWithName("ArialMT", fontSize, nil);
         var lineSpacing = config.lineSpace;
@@ -91,7 +91,7 @@ public class FrameParser: NSObject {
         return dict;
     }
     
-    class func createFrameWithFramesetter(framesetter: CTFramesetterRef, config: FrameParserConfig, height: CGFloat) -> CTFrameRef {
+    private class func createFrameWithFramesetter(framesetter: CTFramesetterRef, config: FrameParserConfig, height: CGFloat) -> CTFrameRef {
         let path = CGPathCreateMutable();
         CGPathAddRect(path, nil, CGRectMake(0, 0, config.width, height));
         
@@ -100,7 +100,7 @@ public class FrameParser: NSObject {
     }
     
     
-    class func loadFileName(fileName: String, config: FrameParserConfig, inout imagesArray: Array<CoreTextImageData>, inout linksArray: Array<CoreTextLinkData>) -> NSAttributedString? {
+    private class func loadFileName(fileName: String, config: FrameParserConfig, inout imagesArray: Array<CoreTextImageData>, inout linksArray: Array<CoreTextLinkData>) -> NSAttributedString? {
         
         if let path = NSBundle.mainBundle().pathForResource(fileName, ofType: nil) {
             let data = NSData(contentsOfFile:path);
@@ -162,7 +162,7 @@ public class FrameParser: NSObject {
         return nil;
     }
     
-    class func parseAttributedContentFormDictionary(dic: Dictionary<String, AnyObject>, config: FrameParserConfig) -> NSAttributedString? {
+    private class func parseAttributedContentFormDictionary(dic: Dictionary<String, AnyObject>, config: FrameParserConfig) -> NSAttributedString? {
         var attbuiteds = attriubtedsWithConfig(config);
         
         if let colorName = dic["color"] as? String {
@@ -185,7 +185,7 @@ public class FrameParser: NSObject {
         
     }
     
-    class func colorFormcColorName(colorName: String) -> UIColor? {
+    private class func colorFormcColorName(colorName: String) -> UIColor? {
         if colorName == "blue" {
             return UIColor.blueColor();
         } else if colorName == "red" {
@@ -198,7 +198,7 @@ public class FrameParser: NSObject {
     
  
     
-    class func parseImageDataFromDictionary(dic: Dictionary<String, AnyObject>, config: FrameParserConfig) -> NSAttributedString {
+    private class func parseImageDataFromDictionary(dic: Dictionary<String, AnyObject>, config: FrameParserConfig) -> NSAttributedString {
         
         var callbacks = CTRunDelegateCallbacks(version: kCTRunDelegateCurrentVersion, dealloc: { (refCon) in
             

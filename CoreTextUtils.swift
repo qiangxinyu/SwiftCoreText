@@ -65,7 +65,7 @@ public class CoreTextUtils: NSObject {
     
     //MARK: ---- Inner Method
     
-    class func getLineBounds(bounds: CTLineRef, point: CGPoint) -> CGRect {
+    private class func getLineBounds(bounds: CTLineRef, point: CGPoint) -> CGRect {
         var ascent = CGFloat();
         var descent = CGFloat();
         var leading = CGFloat();
@@ -74,7 +74,7 @@ public class CoreTextUtils: NSObject {
         return CGRectMake(point.x, point.y - ascent, width, height);
     }
     
-    class func linkAtIndex(index: CFIndex, linkArray: Array<CoreTextLinkData>) -> CoreTextLinkData? {
+    private class func linkAtIndex(index: CFIndex, linkArray: Array<CoreTextLinkData>) -> CoreTextLinkData? {
         for data in linkArray {
             if NSLocationInRange(index, data.range!) {
                 return data;

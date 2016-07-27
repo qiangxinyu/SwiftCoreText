@@ -25,7 +25,7 @@ public class CoreTextData: NSObject {
     }
     
     
-    func fillImagePosition() {
+    private func fillImagePosition() {
         if imagesArray?.count == 0 {
             return;
         }
